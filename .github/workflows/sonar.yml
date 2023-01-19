@@ -19,6 +19,11 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Install qt
         uses: jurplel/install-qt-action@v3
+      - name: Install VCPKG
+        run: |
+          git clone https://github.com/Microsoft/vcpkg.git
+          ./vcpkg/bootstrap-vcpkg.sh
+          ./vcpkg/vcpkg install openimageio[opencolorio,tools]:x64-windows --recurse
       - name: Install deps
         run: |
           sudo apt update
