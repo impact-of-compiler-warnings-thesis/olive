@@ -19,15 +19,10 @@ jobs:
         uses: SonarSource/sonarcloud-github-c-cpp@v1
       - name: Install qt
         uses: jurplel/install-qt-action@v3
-      - name: Install VCPKG
-        run: |
-          git clone https://github.com/Microsoft/vcpkg.git
-          ./vcpkg/bootstrap-vcpkg.sh
-          ./vcpkg/vcpkg install openimageio[opencolorio,tools]:x64-windows --recurse
       - name: Install deps
         run: |
           sudo apt update
-          sudo apt install libavformat-dev libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev libswresample-dev libopenimageio-dev libopenexr-dev portaudio19-dev
+          sudo apt install libavformat-dev libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev libswresample-dev libopenimageio-dev libopenexr-dev portaudio19-dev libopencolorio-dev
           sudo apt install ninja-build
       - name: Run build-wrapper
         run: |
