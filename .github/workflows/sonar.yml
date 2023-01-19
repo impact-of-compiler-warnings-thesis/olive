@@ -22,8 +22,17 @@ jobs:
       - name: Install deps
         run: |
           sudo apt update
-          sudo apt install libavformat-dev libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev libswresample-dev libopenimageio-dev libopenexr-dev portaudio19-dev libopencolorio-dev
+          sudo apt install libavformat-dev libavcodec-dev libavfilter-dev libavutil-dev libswscale-dev libswresample-dev libopenimageio-dev libopenexr-dev portaudio19-dev 
           sudo apt install ninja-build
+
+      - name: Build opencolorio from source
+        run: |
+          git clone https://github.com/AcademySoftwareFoundation/OpenColorIO
+          cd OpenColorIO 
+          cmake -DOCIO_INSTALL_EXT_PACKAGES=ALL
+          make 
+          sudo make install
+
       - name: Run build-wrapper
         run: |
           mkdir build
