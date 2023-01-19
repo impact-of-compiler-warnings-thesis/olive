@@ -29,8 +29,9 @@ jobs:
         run: |
           git clone https://github.com/AcademySoftwareFoundation/OpenColorIO
           cd OpenColorIO 
-          cmake -DOCIO_INSTALL_EXT_PACKAGES=ALL
-          make 
+          mkdir build
+          cd build
+          cmake -DOCIO_INSTALL_EXT_PACKAGES=ALL .. 
           sudo make install
 
       - name: Run build-wrapper
